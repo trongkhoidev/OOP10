@@ -1,7 +1,9 @@
 
 package nguyentrongkhoi_5867.Exercise9_Interface;
 
+import java.text.ParseException;
 import java.util.Date;
+import java.util.Scanner;
 
 /**
  *
@@ -34,6 +36,22 @@ public class MeetingRoom extends Room implements IRoom {
     public void displayDetails(){
         super.displayDetails();
         System.out.println("Capacity: " + capacity);
+    }
+    
+    @Override
+    public void enterRoomInfo() throws ParseException{
+        Scanner sc = new Scanner(System.in);
+        super.enterRoomInfo();
+        System.out.println("Enter capacity: ");
+        capacity = sc.nextInt();
+    }
+    
+    @Override
+    public void updateRoomById(String id) throws ParseException{
+        Scanner sc = new Scanner(System.in);
+        super.updateRoomById(id);
+        System.out.println("Enter capacity: ");
+        capacity = sc.nextInt();
     }
 
     public int getCapacity() {

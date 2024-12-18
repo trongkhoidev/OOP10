@@ -1,7 +1,9 @@
 
 package nguyentrongkhoi_5867.Exercise9_Interface;
 
+import java.text.ParseException;
 import java.util.Date;
+import java.util.Scanner;
 
 
 public class BedRoom extends Room implements IRoom {
@@ -25,6 +27,22 @@ public class BedRoom extends Room implements IRoom {
             cost += baseCost*0.1;
         }
         return cost;
+    }
+    
+    @Override
+    public void enterRoomInfo() throws ParseException{
+        Scanner sc = new Scanner(System.in);
+        super.enterRoomInfo();
+        System.out.println("Enter number Of Beds: ");
+        numberOfBeds = sc.nextInt();
+    }
+    
+    @Override
+    public void updateRoomById(String id) throws ParseException{
+        Scanner sc = new Scanner(System.in);
+        super.updateRoomById(id);
+        System.out.println("Enter number Of Beds: ");
+        numberOfBeds = sc.nextInt();
     }
     
     @Override

@@ -1,8 +1,10 @@
 
 package nguyentrongkhoi_5867.Exercise9_Interface;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Scanner;
 
 
 public abstract class Room implements IRoom {
@@ -25,13 +27,60 @@ public abstract class Room implements IRoom {
     public abstract double calculateCost();
     
     @Override
+    public void enterRoomInfo() throws ParseException{
+        Scanner sc = new Scanner(System.in);
+        SimpleDateFormat fm = new SimpleDateFormat("dd/MM/yyyy");
+        fm.setLenient(false);
+        System.out.println("Enter ID: ");
+        id = sc.nextLine();
+        System.out.println("Enter Name: ");
+        name = sc.nextLine();
+        System.out.println("Enter base Cost: ");
+        baseCost = sc.nextDouble();
+        sc.nextLine();
+        System.out.println("Enter checkin Date(dd/MM/yyyy): ");
+        String inDate = sc.nextLine();
+        checkinDate = fm.parse(inDate);
+        System.out.println("Enter checkout Date(dd/MM/yyyy): ");
+        String outDate = sc.nextLine();
+        checkoutDate = fm.parse(outDate);
+    }
+    
+    @Override
+    public void updateRoomById(String id)  throws ParseException {
+        Scanner sc = new Scanner(System.in);
+        SimpleDateFormat fm = new SimpleDateFormat("dd/MM/yyyy");
+        if(this.id.equals(id)){
+            System.out.println("Enter Name: ");
+            name = sc.nextLine();
+            System.out.println("Enter base Cost: ");
+            baseCost = sc.nextDouble();
+            sc.nextLine();
+            System.out.println("Enter checkin Date(dd/MM/yyyy): ");
+            String inDate = sc.nextLine();
+            checkinDate = fm.parse(inDate);
+            System.out.println("Enter checkout Date(dd/MM/yyyy): ");
+            String outDate = sc.nextLine();
+            checkoutDate = fm.parse(outDate);
+        }
+    }
+    
+    @Override
     public void displayDetails(){
         SimpleDateFormat fm = new SimpleDateFormat("dd/MM/yyyy");
         System.out.println("ID: " + id);
         System.out.println("Name: " + name);
         System.out.println("Base cost: " + baseCost);
         System.out.println("Checkin Date: " + fm.format(checkinDate));
-        System.out.println("CHeckout Date: " + fm.format(checkoutDate));
+        System.out.println("Checkout Date: " + fm.format(checkoutDate));
+        System.out.println("Day stay: " + caculateCaculateDayStays());
+    }
+    
+    public long caculateCaculateDayStays() {
+        if (checkinDate != null && checkoutDate != null) {
+            return (checkoutDate.getTime() - checkinDate.getTime()) / (1000 * 60 * 60 * 24);
+        }
+        return 0;
     }
 
     public String getId() {
@@ -73,15 +122,5 @@ public abstract class Room implements IRoom {
     public void setCheckoutDate(Date checkoutDate) {
         this.checkoutDate = checkoutDate;
     }
-    
-    public long dayStay() {
-        if (checkinDate != null && checkoutDate != null) {
-            return (checkoutDate.getTime() - checkinDate.getTime()) / (1000 * 60 * 60 * 24);
-        }
-        return 0;
-    }
-    
-
-    
 
 }

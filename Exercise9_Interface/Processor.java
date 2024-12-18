@@ -21,9 +21,7 @@ public class Processor {
             System.out.println("6. Display all Rooms");
             System.out.println("7. Find the most expensive Room");
             System.out.println("8. Count Room");
-            System.out.println("9. Day stay");
-            System.out.println("10. Exit program");
-
+            System.out.println("9. Exit program");
             System.out.println("Enter your choice: ");
             choice = sc.nextInt();
             sc.nextLine();
@@ -71,12 +69,6 @@ public class Processor {
                     break;
                 }
                 case 9: {
-                    System.out.println("Enter ID want to check day Stay: ");
-                    String id = sc.nextLine();
-                    System.out.println("Day stay: " + rooms.dayStay(id));
-                    break;
-                }
-                case 10: {
                     System.out.println("Exit Program!!!");
                     break;
                 }
@@ -85,6 +77,6 @@ public class Processor {
                     break;
                 }          
             }
-        }while(choice != 10);
+        }while(choice != 9);
     }
 }
